@@ -1,10 +1,12 @@
-const lines = [
+// 6-multi_languages_loop.js
+
+const languages = [
     "C is fun",
     "Python is cool",
     "JavaScript is amazing"
   ];
   
-  for (let counter = 0; counter < languages.length; counter++) {
-    console.log(lines[counter]);
+  for (let i = 0; i < languages.length; i++) {
+    console.log(languages[i]);
   }
   
