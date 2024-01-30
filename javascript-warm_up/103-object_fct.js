@@ -1,15 +1,19 @@
+// 103-object_fct.js
+
+#!/usr/bin/node
 const myObject = {
   type: 'object',
   value: 12
 };
 console.log(myObject);
 
-
-myObject.incr = function() {
+// Create a named function incr
+const incrFunction = function incr() {
   this.value += 1;
 };
 
-myObject.incr.name = 'incr';
+// Add the named function to myObject
+myObject.incr = incrFunction;
 
 myObject.incr();
 console.log(myObject);
