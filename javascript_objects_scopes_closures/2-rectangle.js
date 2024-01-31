@@ -1,5 +1,4 @@
 #!/usr/bin/node
-// 2-rectangle.js
 
 class Rectangle {
     constructor(w, h) {
@@ -13,4 +12,3 @@ class Rectangle {
   }
   
   module.exports = Rectangle;
-  
