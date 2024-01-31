@@ -1,11 +1,19 @@
 #!/usr/bin/node
-class Square extends Rectangle {
-    constructor(size) {
-      super(size, size);
+class Rectangle {
+    constructor(w, h) {
+      if (w <= 0 || h <= 0 || !Number.isInteger(w) || !Number.isInteger(h)) {
+        return {};
+      }
+      this.width = w;
+      this.height = h;
     }
   }
   
-  class SquareWithCharPrint extends Square {
+  class Square extends Rectangle {
+    constructor(size) {
+      super(size, size);
+    }
+  
     charPrint(c) {
       if (c === undefined) {
         c = 'X';
@@ -17,5 +25,5 @@ class Square extends Rectangle {
     }
   }
   
-  module.exports = SquareWithCharPrint;
+  module.exports = Square;
   
