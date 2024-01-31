@@ -1,29 +1,22 @@
-#!/usr/bin/node
-class Rectangle {
-    constructor(w, h) {
-      if (w <= 0 || h <= 0 || !Number.isInteger(w) || !Number.isInteger(h)) {
-        return {};
+const Square = require('./5-square');
+
+class Square extends Square {
+  constructor(size) {
+    super(size);
+  }
+
+  charPrint(c) {
+    if (c === undefined) {
+      c = 'X';
+    }
+    for (let i = 0; i < this.height; i++) {
+      let row = '';
+      for (let j = 0; j < this.width; j++) {
+        row += c;
       }
-      this.width = w;
-      this.height = h;
+      console.log(row);
     }
   }
-  
-  class Square extends Rectangle {
-    constructor(size) {
-      super(size, size);
-    }
-  
-    charPrint(c) {
-      if (c === undefined) {
-        c = 'X';
-      }
-  
-      for (let i = 0; i < this.height; i++) {
-        console.log(c.repeat(this.width));
-      }
-    }
-  }
-  
-  module.exports = Square;
-  
+}
+
+module.exports = Square;
