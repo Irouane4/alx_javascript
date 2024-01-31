@@ -14,7 +14,22 @@ class Rectangle {
         console.log('X'.repeat(this.width));
       }
     }
+  
+    rotate() {
+      [this.width, this.height] = [this.height, this.width];
+    }
+  
+    double() {
+      this.width *= 2;
+      this.height *= 2;
+    }
   }
   
-  module.exports = Rectangle;
+  class Square extends Rectangle {
+    constructor(size) {
+      super(size, size);
+    }
+  }
+  
+  module.exports = Square;
   
