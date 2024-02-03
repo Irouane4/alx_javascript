@@ -1,15 +1,31 @@
+// Make sure to install the 'request' module first: npm install request
 const request = require('request');
 
+// Get the movie ID from command line arguments
 const movieId = process.argv[2];
 
-const url = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
+// Check if the movie ID is provided
+if (!movieId) {
+  console.error('Please provide a movie ID as the first argument.');
+  process.exit(1);
+}
 
-request.get(url, (error, response, body) => {
+// Construct the API endpoint URL
+const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
+
+// Make the request to the Star Wars API
+request.get(apiUrl, (error, response, body) => {
   if (error) {
-    console.error(`An error occurred: ${error}`);
-    process.exit(1);
-  }
+    console.error('Error:', error.message);
+  } else {
+    try {
+      // Parse the JSON response
+      const movieData = JSON.parse(body);
 
-  const movie = JSON.parse(body);
-  console.log(`Title: ${movie.title}`);
+      // Display the title of the movie
+      console.log(movieData.title);
+    } catch (parseError) {
+      console.error('Error parsing JSON:', parseError.message);
+    }
+  }
 });
