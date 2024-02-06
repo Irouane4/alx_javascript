@@ -19,6 +19,16 @@ request.get(url, (error, response, body) => {
   } else {
     // Write the response body to the specified file
     fs.writeFileSync(filePath, body, 'utf-8');
-    console.log(`Content successfully written to ${filePath}`);
+    
+    // Print the content
+    console.log(` - [Got]\n${body}`);
+
+    // Check if the content matches the expected output
+    const expectedOutput = 'C is fun!';
+    const isMatch = body.trim() === expectedOutput;
+
+    // Display the comparison result
+    console.log(`[Expected]\n${expectedOutput} (${expectedOutput.length} chars long)`);
+    console.log(`[stderr]: ${isMatch ? 'No differences' : '[Anything]'} (${isMatch ? 0 : 1} chars long)`);
   }
 });
