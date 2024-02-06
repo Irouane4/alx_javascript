@@ -1,27 +1,19 @@
-
-var globalVariable = 'Welcome';
+let globalVariable = 'Welcome';
 
 function outer() {
-    alert(globalVariable);
-    var course = 'Holberton';
+  alert(globalVariable);
 
-    function inner() {
-        alert(globalVariable + ' ' + course);
+  function inner() {
+    alert(globalVariable + ' ' + course);
 
-        var exclamation = '!';
-
-        function inception() {
-            alert(globalVariable + ' ' + course + exclamation);
-        }
-
-        inception();
+    function inception() {
+      alert(globalVariable + ' ' + course + ' ' + exclamation);
     }
 
-    inner();
+    inception();
+  }
+
+  inner();
 }
-
-outer();
-
-outer();
 
 outer();
