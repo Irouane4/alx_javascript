@@ -2,36 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Example</title>
 </head>
 <body>
-    <label for="firstname">First Name:</label>
-    <input type="text" id="firstname">
-
+    <h1>Cookie Example</h1>
+    <label for="firstname">Firstname:</label>
+    <input type="text" id="firstname" name="firstname">
+    <br>
     <label for="email">Email:</label>
-    <input type="text" id="email">
-
+    <input type="text" id="email" name="email">
+    <br>
     <button onclick="setCookies()">Log me in</button>
     <button onclick="showCookies()">Show the cookies</button>
-
-    <script>
-        function setCookies() {
-            const firstnameValue = document.getElementById('firstname').value;
-            const emailValue = document.getElementById('email').value;
-
-            document.cookie = `firstname=${firstnameValue}`;
-            document.cookie = `email=${emailValue}`;
-        }
-
-        function showCookies() {
-            const cookiesParagraph = document.createElement('p');
-            const cookiesValue = document.cookie;
-
-            cookiesParagraph.innerHTML = `Cookies: ${cookiesValue}`;
-            document.body.appendChild(cookiesParagraph);
-        }
-    </script>
+    <p id="cookies"></p>
 </body>
+<script>
+    function setCookies() {
+        const firstname = document.getElementById('firstname').value;
+        const email = document.getElementById('email').value;
+
+        document.cookie = `firstname=${firstname}; expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/`;
+        document.cookie = `email=${email}; expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/`;
+    }
+
+    function showCookies() {
+        const cookies = document.getElementById('cookies');
+        const cookieString = document.cookie;
+        const cookieArray = cookieString.split('; ');
+
+        let cookiesHTML = 'Cookies:<br>';
+
+        cookieArray.forEach(cookie => {
+            const cookieKeyValue = cookie.split('=');
+            cookiesHTML += `${cookieKeyValue[0]}: ${cookieKeyValue[1]}<br>`;
+        });
+
+        cookies.innerHTML = cookiesHTML;
+    }
+</script>
 </html>
