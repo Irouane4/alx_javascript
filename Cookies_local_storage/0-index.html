@@ -1,31 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cookie Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to the website</title>
 </head>
 <body>
-    <input type="text" id="firstname" placeholder="First Name">
-    <input type="text" id="email" placeholder="Email">
+    <h1>Cookie Example</h1>
+    <label>Firstname:</label>
+    <input type="text" id="firstname" style="display: inline;">
+    <label style="margin-left: 10px;">Email:</label>
+    <input type="text" id="email" style="display: inline;">
+    <br>
     <button onclick="setCookies()">Log me in</button>
     <button onclick="showCookies()">Show the cookies</button>
-
+    <br>
+    <div id="cookies"></div>
     <script>
         function setCookies() {
-            var firstName = document.getElementById('firstname').value;
+            var firstname = document.getElementById('firstname').value;
             var email = document.getElementById('email').value;
-            document.cookie = "firstname=" + firstName;
-            document.cookie = "email=" + email;
+
+            document.cookie = "firstname=" + firstname + ";expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/";
+            document.cookie = "email=" + email + ";expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/";
         }
 
         function showCookies() {
-            var cookies = document.cookie;
-            var para = document.createElement("p");
-            var node = document.createTextNode("Cookies: " + cookies);
-            para.appendChild(node);
-            var element = document.getElementById("bottom");
-            element.appendChild(para);
+            var cookies = document.getElementById('cookies');
+            var cookieString = document.cookie;
+            var cookieArray = cookieString.split('; ');
+
+            var cookiesHTML = 'Cookies:<br>';
+
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].split('=');
+                cookiesHTML += cookie[0] + ': ' + cookie[1] + '<br>';
+            }
+
+            cookies.innerHTML = cookiesHTML;
         }
     </script>
-    <div id="bottom"></div>
 </body>
 </html>
